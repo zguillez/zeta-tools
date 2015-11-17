@@ -1,0 +1,19 @@
+{
+	"name": "zeta-tools",
+	"version": "0.0.3",
+	"description": "Zguillez nodejs tools",
+	"repository": "https://github.com/zguillez/zeta-tools.git",
+	"license": "MIT",
+	"author": {
+		"name": "Guillermo de la Iglesia",
+		"email": "mail@zguillez.io",
+		"url": "https://github.com/zguillez"
+	},
+	"main": "bin/z.js",
+	"bin": {
+		"z": "bin/z.js"
+	},
+	"dependencies": {
+		"shelljs": "^0.5.3"
+	}
+}
