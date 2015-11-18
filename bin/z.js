@@ -1,17 +1,19 @@
-#! /usr/bin/env node
+#! /usr/local/bin/node
 
-require('shelljs/global');
+var shell = require('shelljs');
+var fs = require('fs');
+var path = require('path');
 var param = process.argv[2];
 if (param === 'version' || param === '-v') {
-	var fs = require("fs");
-	var file = fs.readFileSync("package.json");
+	var dir = path.resolve(__dirname, '../');
+	var file = fs.readFileSync(dir + "/package.json");
 	console.log(JSON.parse(file).version);
 } else if (param === 'alias') {
 	console.log('alias ls="clear && pwd && ls -lashF"');
 } else if (param === 'export') {
 	console.log('export PS1="\\u:\\W:$ "');
 } else if (param === 'ls') {
-	exec('clear && pwd && ls -lashF');
+	shell.exec('clear && pwd && ls -lashF');
 } else {
 	var msg = "\nUsage: z <command>\n\nwhere <command> is one of:\n\tversion, alias, export, ls\n";
 	console.log(msg);
