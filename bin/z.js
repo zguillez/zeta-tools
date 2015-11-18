@@ -7,7 +7,7 @@ if (param === 'version' || param === '-v') {
 	var file = fs.readFileSync("package.json");
 	console.log(JSON.parse(file).version);
 } else if (param === 'alias') {
-	console.log('alias ls="clear && pwd"');
+	console.log('alias ls="clear && pwd && ls -lashF"');
 } else if (param === 'export') {
 	console.log('export PS1="\\u:\\W:$ "');
 } else if (param === 'ls') {
