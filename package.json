@@ -1,9 +1,9 @@
 {
 	"name": "zeta-tools",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Zguillez nodejs tools",
 	"repository": "https://github.com/zguillez/zeta-tools.git",
-	"license": "MIT",
+	"license": "GPL",
 	"author": {
 		"name": "Guillermo de la Iglesia",
 		"email": "mail@zguillez.io",

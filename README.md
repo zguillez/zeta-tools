@@ -13,6 +13,7 @@ Zguillez nodejs tools
 ### Update package
 
 	z self-update
+	z self-update -f
 	
 ### Uninstall package
 
