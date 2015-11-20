@@ -17,7 +17,8 @@ if (param === 'version' || param === '-v') {
 } else if (param === 'du') {
 	shell.exec('clear && pwd && du -csh * | sort -n');
 } else if (param === 'help' || param === '-h') {
-	var msg = "\nUsage: z <command>ls: clear && pwd && ls -lashFdu: clear && pwd && du -csh * | sort -n\n";
+	var msg =
+		"\nUsage: z <command>\n\nupdate: sudo npm i -g zeta-tools\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -csh * | sort -n\n";
 	console.log(msg);
 } else {
 	var msg = "\nUsage: z <command>\n\nwhere <command> is one of:\n\tversion, alias, export, ls, du\n";
