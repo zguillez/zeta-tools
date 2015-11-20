@@ -15,14 +15,19 @@ if (param === 'version' || param === '-v') {
 } else if (param === 'ls') {
 	shell.exec('clear && pwd && ls -lashF');
 } else if (param === 'du') {
-	shell.exec('clear && pwd && du -csh * | sort -n');
+	var isOSX = /^darwin/.test(process.platform);
+	if (isOSX) {
+		shell.exec('clear && pwd && du -hsc * | gsort -hr');
+	} else {
+		shell.exec('clear && pwd && du -hsc * | sort -hr');
+	}
 } else if (param === 'self-update') {
-	shell.exec('clear && pwd && du -csh * | sort -n');
+	shell.exec('sudo npm i -g zeta-tools');
 } else if (param === 'help' || param === '-h') {
 	var msg =
-		"\nUsage: z <command>\n\nself-update: sudo npm i -g zeta-tools\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -csh * | sort -n\n";
+		"Usage: z <command>\n\nself-update: sudo npm i -g zeta-tools\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -hsc * | sort -hr \n      clear && pwd && du -hsc * | gsort -hr (osx) \n\n>Requeriments for OSX:\nbrew install coreutils\n\n";
 	console.log(msg);
 } else {
-	var msg = "\nUsage: z <command>\n\nwhere <command> is one of:\n\tversion, alias, export, ls, du\n";
+	var msg = "\nUsage: z <command>\n\nwhere <command> is one of:\n\tversion, self-update, alias, export, ls, du\n";
 	console.log(msg);
 }
