@@ -16,9 +16,11 @@ if (param === 'version' || param === '-v') {
 	shell.exec('clear && pwd && ls -lashF');
 } else if (param === 'du') {
 	shell.exec('clear && pwd && du -csh * | sort -n');
+} else if (param === 'self-update') {
+	shell.exec('clear && pwd && du -csh * | sort -n');
 } else if (param === 'help' || param === '-h') {
 	var msg =
-		"\nUsage: z <command>\n\nupdate: sudo npm i -g zeta-tools\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -csh * | sort -n\n";
+		"\nUsage: z <command>\n\nself-update: sudo npm i -g zeta-tools\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -csh * | sort -n\n";
 	console.log(msg);
 } else {
 	var msg = "\nUsage: z <command>\n\nwhere <command> is one of:\n\tversion, alias, export, ls, du\n";
