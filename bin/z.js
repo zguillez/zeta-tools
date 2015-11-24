@@ -33,9 +33,9 @@ if (param1 === 'version' || param1 === '-v') {
 } else if (param1 === 'du') {
 	var isOSX = /^darwin/.test(process.platform);
 	if (isOSX) {
-		shell.exec('clear && pwd && du -hsc * | gsort -hr');
+		shell.exec('clear && pwd && du -hsc .[!.]* * | gsort -hr');
 	} else {
-		shell.exec('clear && pwd && du -hsc * | sort -hr');
+		shell.exec('clear && pwd && du -hsc .[!.]* * | sort -hr');
 	}
 } else if (param1 === 'update' || param1 === '-u') {
 	try {
@@ -60,7 +60,7 @@ if (param1 === 'version' || param1 === '-v') {
 	shell.exec('clear');
 	console.log('*******************************************'.prompt);
 	var msg =
-		"\nUsage: z <command>\n\nself-update: sudo npm i -g zeta-tools (use -f for unistall first)\nupdate: sudo ncu -u && sudo ncu -m bower -u\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -hsc * | sort -hr \n    clear && pwd && du -hsc * | gsort -hr (osx) \n\n>Update NodeJS\nsudo npm cache clean -f\nsudo npm install -g n\nsudo n stable\n\n>Requeriments for OSX:\nbrew install coreutils\n\n>Uninstall\nsudo npm un -g zeta-tools\n..or..\nsudo npm cache clean\nsudo rm -rf /usr/local/lib/node_modules/zeta-tools\n";
+		"\nUsage: z <command>\n\nself-update: sudo npm i -g zeta-tools (use -f for unistall first)\nupdate: sudo ncu -u && sudo ncu -m bower -u\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -hsc .[!.]* * | sort -hr \n    clear && pwd && du -hsc .[!.]* * | gsort -hr (osx) \n\n>Update NodeJS\nsudo npm cache clean -f\nsudo npm install -g n\nsudo n stable\n\n>Requeriments for OSX:\nbrew install coreutils\n\n>Uninstall\nsudo npm un -g zeta-tools\n..or..\nsudo npm cache clean\nsudo rm -rf /usr/local/lib/node_modules/zeta-tools\n";
 	console.log(msg.help);
 	console.log('\n*******************************************\n'.prompt);
 } else {
