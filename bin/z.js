@@ -52,9 +52,11 @@ if (param1 === 'version' || param1 === '-v') {
 		console.log("No bower.json file found");
 	}
 } else if (param1 === 'self-update') {
-	if (param2 === '-f') {
+	if (param2 === 'force' || param2 === '-f') {
+		console.log("*uninstalling*");
 		shell.exec('sudo npm un -g zeta-tools');
 	}
+	console.log("*installing*");
 	shell.exec('sudo npm i -g zeta-tools');
 } else if (param1 === 'help' || param1 === '-h') {
 	shell.exec('clear');
