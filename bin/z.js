@@ -42,13 +42,13 @@ if (param1 === 'version' || param1 === '-v') {
 } else if (param1 === 'update' || param1 === '-u') {
 	try {
 		stats = fs.lstatSync('package.json');
-		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -u --packageFile ' + pwd + '/package.json');
+		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -ua --packageFile ' + pwd + '/package.json');
 	} catch (e) {
 		console.log("No package.json file found");
 	}
 	try {
 		stats = fs.lstatSync('bower.json');
-		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -m bower -u --packageFile ' + pwd +
+		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -m bower -ua --packageFile ' + pwd +
 			'/bower.json');
 	} catch (e) {
 		console.log("No bower.json file found");
@@ -59,7 +59,7 @@ if (param1 === 'version' || param1 === '-v') {
 	shell.exec('clear');
 	console.log('*******************************************'.prompt);
 	var msg =
-		"\nUsage: z <command>\n\nself-update: sudo npm un -g zeta-tools && sudo npm i -g zeta-tools\nupdate: sudo ncu -u && sudo ncu -m bower -u\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -hsc .[!.]* * | sort -hr \n    clear && pwd && du -hsc .[!.]* * | gsort -hr (osx) \ncpu: top -o vsize\n\n>Update NodeJS\nsudo npm cache clean -f\nsudo npm install -g n\nsudo n stable\n\n>Requeriments for OSX:\nbrew install coreutils\n\n>Uninstall\nsudo npm un -g zeta-tools\n..or..\nsudo npm cache clean\nsudo rm -rf /usr/local/lib/node_modules/zeta-tools\n";
+		"\nUsage: z <command>\n\nself-update: sudo npm un -g zeta-tools && sudo npm i -g zeta-tools\nupdate: sudo ncu -ua && sudo ncu -m bower -ua\nls: clear && pwd && ls -lashF\ndu: clear && pwd && du -hsc .[!.]* * | sort -hr \n    clear && pwd && du -hsc .[!.]* * | gsort -hr (osx) \ncpu: top -o vsize\n\n>Update NodeJS\nsudo npm cache clean -f\nsudo npm install -g n\nsudo n stable\n\n>Requeriments for OSX:\nbrew install coreutils\n\n>Uninstall\nsudo npm un -g zeta-tools\n..or..\nsudo npm cache clean\nsudo rm -rf /usr/local/lib/node_modules/zeta-tools\n";
 	console.log(msg.help);
 	console.log('\n*******************************************\n'.prompt);
 } else {

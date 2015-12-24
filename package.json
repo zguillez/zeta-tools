@@ -15,7 +15,7 @@
 	},
 	"dependencies": {
 		"colors": "^1.1.2",
-		"npm-check-updates": "^2.5.1",
+		"npm-check-updates": "^2.5.5",
 		"shelljs": "^0.5.3"
 	}
 }
