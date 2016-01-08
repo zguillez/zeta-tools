@@ -33,7 +33,6 @@ https.get(url, function(res) {
 	});
 	res.on('end', function() {
 		var packagejson = JSON.parse(body);
-		console.log("Got a response: ", packagejson.version);
 		if (version !== packagejson.version) {
 			var msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
 			console.log(msg.info);
