@@ -35,11 +35,10 @@ https.get(url, function(res) {
 		var packagejson = JSON.parse(body);
 		console.log("Got a response: ", packagejson.version);
 		if (version !== packagejson.version) {
-			console.log("New version available: ", packagejson.version);
+			var msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
+			console.log(msg.info);
 		}
 	});
-}).on('error', function(e) {
-	console.log("Got an error: ", e);
 });
 //---------------------------------------------------------
 if (param1 === 'version' || param1 === '-v') {
