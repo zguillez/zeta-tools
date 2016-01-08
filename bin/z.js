@@ -3,6 +3,8 @@
 var shell = require('shelljs');
 var fs = require('fs');
 var path = require('path');
+var http = require("http");
+var https = require("https");
 var colors = require('colors');
 var param1 = process.argv[2];
 var param2 = process.argv[3];
@@ -19,6 +21,25 @@ colors.setTheme({
 	warn: 'yellow',
 	debug: 'blue',
 	error: 'red'
+});
+//---------------------------------------------------------
+var file = fs.readFileSync(dir + "/package.json");
+var version = JSON.parse(file).version;
+var url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
+https.get(url, function(res) {
+	var body = '';
+	res.on('data', function(chunk) {
+		body += chunk;
+	});
+	res.on('end', function() {
+		var packagejson = JSON.parse(body);
+		console.log("Got a response: ", packagejson.version);
+		if (version !== packagejson.version) {
+			console.log("New version available: ", packagejson.version);
+		}
+	});
+}).on('error', function(e) {
+	console.log("Got an error: ", e);
 });
 //---------------------------------------------------------
 if (param1 === 'version' || param1 === '-v') {
