@@ -60,7 +60,12 @@ if (param1 === 'version' || param1 === '-v') {
 	console.log('top -o vsize'.info);
 } else if (param1 === 'git') {
 	if (param2) {
-		shell.exec('git add --all && git commit -m "' + param2 + '" && git push -u origin master');
+		console.log('git add --all'.info);
+		shell.exec('git add --all && git commit -m "' + param2 + '"');
+		console.log('git push -u origin master'.info);
+		shell.exec('git push -u origin master');
+		console.log('git status'.info);
+		shell.exec('git status');
 	} else {
 		console.log('git commit message required');
 	}
