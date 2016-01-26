@@ -23,26 +23,24 @@ colors.setTheme({
 	error: 'red'
 });
 //---------------------------------------------------------
-var file = fs.readFileSync(dir + "/package.json");
-var version = JSON.parse(file).version;
-var url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
-https.get(url, function(res) {
-	var body = '';
-	res.on('data', function(chunk) {
-		body += chunk;
-	});
-	res.on('end', function() {
-		var packagejson = JSON.parse(body);
-		if (version !== packagejson.version) {
-			var msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
-			console.log(msg.info);
-		}
-	});
-});
-//---------------------------------------------------------
 if (param1 === 'version' || param1 === '-v') {
 	var file = fs.readFileSync(dir + "/package.json");
+	var version = JSON.parse(file).version;
 	console.log(JSON.parse(file).version);
+	var url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
+	https.get(url, function(res) {
+		var body = '';
+		res.on('data', function(chunk) {
+			body += chunk;
+		});
+		res.on('end', function() {
+			var packagejson = JSON.parse(body);
+			if (version !== packagejson.version) {
+				var msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
+				console.log(msg.info);
+			}
+		});
+	});
 } else if (param1 === 'alias') {
 	console.log('alias ls="clear && pwd && ls -lashF"'.info);
 } else if (param1 === 'export') {
@@ -62,6 +60,7 @@ if (param1 === 'version' || param1 === '-v') {
 	if (param2) {
 		console.log('git add --all'.info);
 		shell.exec('git add --all && git commit -m "' + param2 + '"');
+		console.log('git commit -m "' + param2 + '"'.warn);
 		console.log('git push -u origin master'.info);
 		shell.exec('git push -u origin master');
 		console.log('git status'.info);
