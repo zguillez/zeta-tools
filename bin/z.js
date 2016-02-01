@@ -67,7 +67,9 @@ if (param1 === 'version' || param1 === '-v') {
 		console.log('git status'.info);
 		shell.exec('git status');
 	} else {
-		console.log('git commit message required');
+		console.log('git status'.info);
+		shell.exec('git status');
+		console.log('commit with: z git "$msg"'.warm);
 	}
 } else if (param1 === 'update' || param1 === '-u') {
 	try {
