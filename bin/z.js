@@ -69,7 +69,7 @@ if (param1 === 'version' || param1 === '-v') {
 	} else {
 		console.log('git status'.info);
 		shell.exec('git status');
-		console.log('commit with: z git "$msg"'.warm);
+		console.log('commit with: z git "msg"'.warn);
 	}
 } else if (param1 === 'update' || param1 === '-u') {
 	try {
