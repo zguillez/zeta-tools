@@ -22,21 +22,22 @@ colors.setTheme({
 	debug: 'blue',
 	error: 'red'
 });
+var file, version, url, body, msg, stats;
 //---------------------------------------------------------
 if (param1 === 'version' || param1 === '-v') {
-	var file = fs.readFileSync(dir + "/package.json");
-	var version = JSON.parse(file).version;
+	file = fs.readFileSync(dir + "/package.json");
+	version = JSON.parse(file).version;
 	console.log(JSON.parse(file).version);
-	var url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
+	url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
 	https.get(url, function(res) {
-		var body = '';
+		body = '';
 		res.on('data', function(chunk) {
 			body += chunk;
 		});
 		res.on('end', function() {
 			var packagejson = JSON.parse(body);
 			if (version !== packagejson.version) {
-				var msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
+				msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
 				console.log(msg.info);
 			}
 		});
@@ -60,7 +61,7 @@ if (param1 === 'version' || param1 === '-v') {
 	if (param2) {
 		console.log('git add --all'.info);
 		shell.exec('git add --all && git commit -m "' + param2 + '"');
-		var msg = 'git commit -m "' + param2 + '"';
+		msg = 'git commit -m "' + param2 + '"';
 		console.log(msg.warn);
 		console.log('git push -u origin master'.info);
 		shell.exec('git push -u origin master');
@@ -90,12 +91,12 @@ if (param1 === 'version' || param1 === '-v') {
 } else if (param1 === 'help' || param1 === '-h') {
 	shell.exec('clear');
 	console.log('*******************************************'.prompt);
-	var msg =
+	msg =
 		"\nUsage: z <command>\r\n\r\nself-update: sudo npm un -g zeta-tools && sudo npm i -g zeta-tools\r\nupdate: sudo ncu -ua && sudo ncu -m bower -ua\r\nls: clear && pwd && ls -lashF\r\ndu: clear && pwd && du -hsc .[!.]* * | sort -hr \r\n    clear && pwd && du -hsc .[!.]* * | gsort -hr (osx) \r\ncpu: top -o vsize\r\ngit $msg: git add --all && git commit -m \"$msg\" && git push -u origin master\r\n\r\n>Update NodeJS\r\nsudo npm cache clean -f\r\nsudo npm install -g n\r\nsudo n stable\r\n\r\n>Requeriments for OSX:\r\nbrew install coreutils\r\n\r\n>Uninstall\r\nsudo npm un -g zeta-tools\r\n..or..\r\nsudo npm cache clean\r\nsudo rm -rf \/usr\/local\/lib\/node_modules\/zeta-tools\r\n";
 	console.log(msg.help);
 	console.log('\n*******************************************\n'.prompt);
 } else {
-	var msg =
+	msg =
 		"\nUsage: z <command>\r\n\r\nwhere <command> is one of:\r\n\tversion -v, help -h, self-update, update -u, alias, export, ls, du, cpu, git $msg\r\n";
 	console.log(msg.warn);
 }
