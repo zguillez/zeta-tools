@@ -25,23 +25,7 @@ colors.setTheme({
 var file, version, url, body, msg, stats;
 //---------------------------------------------------------
 if (param1 === 'version' || param1 === '-v') {
-	file = fs.readFileSync(dir + "/package.json");
-	version = JSON.parse(file).version;
-	console.log(JSON.parse(file).version);
-	url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
-	https.get(url, function(res) {
-		body = '';
-		res.on('data', function(chunk) {
-			body += chunk;
-		});
-		res.on('end', function() {
-			var packagejson = JSON.parse(body);
-			if (version !== packagejson.version) {
-				msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
-				console.log(msg.info);
-			}
-		});
-	});
+	checkForUpdate(true);
 } else if (param1 === 'alias') {
 	console.log('alias ls="clear && pwd && ls -lashF"'.info);
 } else if (param1 === 'export') {
@@ -73,18 +57,12 @@ if (param1 === 'version' || param1 === '-v') {
 		console.log('commit with: z git "msg"'.warn);
 	}
 } else if (param1 === 'update' || param1 === '-u') {
-	try {
-		stats = fs.lstatSync('package.json');
+	if (checkForFile('package.json')) {
 		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -ua --packageFile ' + pwd + '/package.json');
-	} catch (e) {
-		console.log("No package.json file found");
 	}
-	try {
-		stats = fs.lstatSync('bower.json');
+	if (checkForFile('bower.json')) {
 		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -m bower -ua --packageFile ' + pwd +
 			'/bower.json');
-	} catch (e) {
-		console.log("No bower.json file found");
 	}
 } else if (param1 === 'self-update') {
 	shell.exec('sudo npm un -g zeta-tools && sudo npm i -g zeta-tools');
@@ -100,3 +78,37 @@ if (param1 === 'version' || param1 === '-v') {
 		"\nUsage: z <command>\r\n\r\nwhere <command> is one of:\r\n\tversion -v, help -h, self-update, update -u, alias, export, ls, du, cpu, git $msg\r\n";
 	console.log(msg.warn);
 }
+//---------------------------------------------------------
+function checkForFile(file) {
+	try {
+		stats = fs.lstatSync('package.json');
+		return true;
+	} catch (e) {
+		console.log("No " + file + " file found");
+		return false;
+	}
+}
+
+function checkForUpdate(showCurrent) {
+	file = fs.readFileSync(dir + "/package.json");
+	version = JSON.parse(file).version;
+	if (showCurrent) {
+		console.log(JSON.parse(file).version);
+	}
+	url = 'https://raw.githubusercontent.com/zguillez/zeta-tools/master/package.json';
+	https.get(url, function(res) {
+		body = '';
+		res.on('data', function(chunk) {
+			body += chunk;
+		});
+		res.on('end', function() {
+			var packagejson = JSON.parse(body);
+			if (version !== packagejson.version) {
+				msg = "New version available: " + packagejson.version + '\nUpdate with: z self-update';
+				console.log(msg.info);
+			}
+		});
+	});
+}
+//---------------------------------------------------------
+//
