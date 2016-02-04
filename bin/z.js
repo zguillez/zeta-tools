@@ -58,10 +58,10 @@ if (param1 === 'version' || param1 === '-v') {
 	}
 } else if (param1 === 'update' || param1 === '-u') {
 	if (checkForFile('package.json')) {
-		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -ua --packageFile ' + pwd + '/package.json');
+		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/ncu -ua --packageFile ' + pwd + '/package.json');
 	}
 	if (checkForFile('bower.json')) {
-		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/npm-check-updates -m bower -ua --packageFile ' + pwd +
+		shell.exec('sudo ' + dir + '/node_modules/npm-check-updates/bin/ncu -m bower -ua --packageFile ' + pwd +
 			'/bower.json');
 	}
 } else if (param1 === 'self-update') {
@@ -81,7 +81,7 @@ if (param1 === 'version' || param1 === '-v') {
 //---------------------------------------------------------
 function checkForFile(file) {
 	try {
-		stats = fs.lstatSync('package.json');
+		stats = fs.lstatSync(file);
 		return true;
 	} catch (e) {
 		console.log("No " + file + " file found");
