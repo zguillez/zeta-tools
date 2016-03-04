@@ -29,6 +29,8 @@ if (param1 === 'version' || param1 === '-v') {
 	require('./bin/du.js');
 } else if (param1 === 'git') {
 	require('./bin/git.js');
+} else if (param1 === 'mkdir') {
+	require('./bin/mkdir.js');
 } else if (param1 === 'update' || param1 === '-u') {
 	require('./bin/update.js');
 } else if (param1 === 'self-update') {
