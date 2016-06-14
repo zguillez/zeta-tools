@@ -14,12 +14,13 @@ if (param2) {
 	msg = 'git commit -m "' + param2 + '"';
 	console.log(msg.warn);
 	if (param4) {
-		msg = 'git push -u origin ' + param4;
+		msg = 'git push -u origin --tags' + param4;
 		console.log(msg.info);
+		shell.exec('git push -u origin ' + param4 + ' --tags');
 	} else {
-		console.log('git push -u origin master'.info);
+		console.log('git push -u origin master --tags'.info);
+		shell.exec('git push -u origin master --tags');
 	}
-	shell.exec('git push -u origin master');
 	console.log('git status'.info);
 	shell.exec('git status');
 } else {
