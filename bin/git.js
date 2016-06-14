@@ -14,7 +14,7 @@ if (param2) {
 	msg = 'git commit -m "' + param2 + '"';
 	console.log(msg.warn);
 	if (param4) {
-		msg = 'git push -u origin --tags' + param4;
+		msg = 'git push -u origin ' + param4 + '--tags';
 		console.log(msg.info);
 		shell.exec('git push -u origin ' + param4 + ' --tags');
 	} else {
