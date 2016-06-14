@@ -1,6 +1,6 @@
 {
 	"name": "zeta-tools",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"description": "Zguillez nodejs tools",
 	"repository": "https://github.com/zguillez/zeta-tools.git",
 	"license": "GPL",
