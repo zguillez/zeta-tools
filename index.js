@@ -33,6 +33,8 @@ if (param1 === 'version' || param1 === '-v') {
 	require('./bin/update.js');
 } else if (param1 === 'self-update') {
 	require('./bin/self-update.js');
+} else if (param1 === 'template') {
+	require('./bin/template.js');
 } else if (param1 === 'help' || param1 === '-h') {
 	require('./bin/help.js');
 } else {
