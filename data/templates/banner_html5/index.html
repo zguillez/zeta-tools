@@ -38,13 +38,13 @@
 			top      : 0;
 			left     : 0;
 			width    : 298px !important;
-			height   : 248px !important;
+			height   : 598px !important;
 			border   : 1px solid #000;
 		}
 		#content {
 			cursor : pointer;
 		}
-		#content, #frame1, #frame2, #frame3, #loop, #fondo1, #fondo2, #fondo3, #txt1, #txt2, #txt3, #txt4, #txt5 {
+		#content, #frame1, #frame2, #loop, #fondo1, #fondo2, #txt1, #txt2, #txt3, #txt4, #txt5, #txt6 {
 			position : absolute;
 			top      : 0;
 			left     : 0;
@@ -56,9 +56,6 @@
 		}
 		#fondo2 {
 			background-image : url('images/fondo2.jpg');
-		}
-		#fondo3 {
-			background-image : url('images/fondo3.jpg');
 		}
 		#txt1 {
 			background-image : url('images/txt1.png');
@@ -75,6 +72,9 @@
 		#txt5 {
 			background-image : url('images/txt5.png');
 		}
+		#txt6 {
+			background-image : url('images/txt6.png');
+		}
 	</style>
 </head>
 <body onLoad="initEB()">
@@ -84,15 +84,13 @@
 			<div id="fondo1"></div>
 			<div id="txt1" class="animated"></div>
 			<div id="txt2" class="animated"></div>
-		</div>
-		<div id="frame2">
-			<div id="fondo2" class="animated"></div>
 			<div id="txt3" class="animated"></div>
 			<div id="txt4" class="animated"></div>
 		</div>
-		<div id="frame3">
-			<div id="fondo3" class="animated"></div>
+		<div id="frame2">
+			<div id="fondo2" class="animated"></div>
 			<div id="txt5" class="animated"></div>
+			<div id="txt6" class="animated"></div>
 		</div>
 		<div id="loop" class="animated"></div>
 	</section>
@@ -107,17 +105,19 @@
 	}
 	function startAd() {
 		var App = {
+			loops: 0,
+			loopsMax: 1,
 			_ad: document.querySelector("#ad"),
 			_content: document.querySelector("#content"),
 			_fondo1: document.querySelector("#fondo1"),
 			_fondo2: document.querySelector("#fondo2"),
-			_fondo3: document.querySelector("#fondo3"),
 			_loop: document.querySelector("#loop"),
 			_txt1: document.querySelector("#txt1"),
 			_txt2: document.querySelector("#txt2"),
 			_txt3: document.querySelector("#txt3"),
 			_txt4: document.querySelector("#txt4"),
-			_txt5: document.querySelector("#txt5")
+			_txt5: document.querySelector("#txt5"),
+			_txt6: document.querySelector("#txt6")
 		};
 		App.createDispatchEvents = function () {
 			addEvent(App._content, "click", function () {
@@ -126,13 +126,20 @@
 		};
 		App.animacion = function () {
 			App.transicion(500, App._txt1, null, 'fadeIn', '');
-			App.transicion(1000, App._txt2, null, 'fadeInUp', '');
-			App.transicion(4000, App._fondo2, null, 'fadeIn', '');
-			App.transicion(4500, App._txt3, null, 'fadeIn', '');
-			App.transicion(5000, App._txt4, null, 'fadeInLeft', '');
-			App.transicion(8000, App._fondo3, null, 'fadeIn', '');
-			App.transicion(9000, App._txt5, null, 'fadeIn', '');
-			//App.transicion(13000, App._loop, null, 'fadeIn', ''); setTimeout(function () { App.loop(); App.animacion(); }, 13500);
+			App.transicion(1000, App._txt2, null, 'fadeIn', '');
+			App.transicion(1500, App._txt3, null, 'fadeIn', '');
+			App.transicion(2000, App._txt4, null, 'fadeIn', '');
+			App.transicion(5000, App._fondo2, null, 'fadeIn', '');
+			App.transicion(7000, App._txt5, null, 'fadeInRight', '');
+			App.transicion(8000, App._txt6, null, 'fadeInRight', '');
+			setTimeout(function () {
+				if (App.loops < App.loopsMax) {
+					App.transicion(500, App._loop, null, 'fadeIn', '');
+					setTimeout(function () {
+						App.loop();
+					}, 1000);
+				}
+			}, 12000);
 		};
 		App.transicion = function (time, itemIn, itemOut, aniIn, aniOut) {
 			setTimeout(function () {
@@ -159,6 +166,8 @@
 					App.clean(App[i]);
 				}
 			}
+			App.loops++;
+			App.animacion();
 		};
 		App.clean = function (obj) {
 			classie.remove(obj, 'fadeIn');
