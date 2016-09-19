@@ -1,21 +1,21 @@
 {
-	"name": "zeta-tools",
-	"version": "0.6.4",
-	"description": "Zguillez nodejs tools",
-	"repository": "https://github.com/zguillez/zeta-tools.git",
-	"license": "GPL",
-	"author": {
-		"name": "Guillermo de la Iglesia",
-		"email": "mail@zguillez.io",
-		"url": "https://github.com/zguillez"
-	},
-	"main": "index.js",
-	"bin": {
-		"z": "index.js"
-	},
-	"dependencies": {
-		"colors": "^1.1.2",
-		"npm-check-updates": "^2.6.7",
-		"shelljs": "^0.7.0"
-	}
+  "name": "zeta-tools",
+  "version": "0.6.5",
+  "description": "Zguillez nodejs tools",
+  "repository": "https://github.com/zguillez/zeta-tools.git",
+  "license": "GPL",
+  "author": {
+    "name": "Guillermo de la Iglesia",
+    "email": "mail@zguillez.io",
+    "url": "https://github.com/zguillez"
+  },
+  "main": "index.js",
+  "bin": {
+    "z": "index.js"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "npm-check-updates": "^2.6.7",
+    "shelljs": "^0.7.0"
+  }
 }
