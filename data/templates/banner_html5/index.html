@@ -1,191 +1,193 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no"/>
-	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<link rel="stylesheet" type="text/css" href="lib/reset.css">
-	<link rel="stylesheet" type="text/css" href="lib/anims.css">
-	<style media="" data-href="css/main.css">
-		body,
-		html {
-			font-smoothing         : antialiased !important;
-			-webkit-font-smoothing : antialiased !important;
-		}
-		body {
-			overflow : hidden;
-		}
-		#ad {
-			position            : absolute;
-			display             : block;
-			width               : 300px;
-			height              : 600px;
-			overflow            : hidden;
-			-moz-user-select    : -moz-none;
-			-khtml-user-select  : none;
-			-webkit-user-select : none;
-			-ms-user-select     : none;
-			-webkit-user-select : none;
-			cursor              : pointer;
-		}
-		.bg {
-			background-size : contain;
-		}
-		.borde {
-			position : absolute;
-			top      : 0;
-			left     : 0;
-			width    : 298px !important;
-			height   : 598px !important;
-			border   : 1px solid #000000;
-		}
-		#content {
-			cursor : pointer;
-		}
-		#content, #frame1, #frame2, #loop, #fondo1, #fondo2, #txt1, #txt2, #txt3, #txt4, #txt5, #txt6 {
-			position : absolute;
-			top      : 0;
-			left     : 0;
-			right    : 0;
-			bottom   : 0;
-		}
-		#fondo1, #loop {
-			background-image : url('images/fondo1.jpg');
-		}
-		#fondo2 {
-			background-image : url('images/fondo2.jpg');
-		}
-		#txt1 {
-			background-image : url('images/txt1.png');
-		}
-		#txt2 {
-			background-image : url('images/txt2.png');
-		}
-		#txt3 {
-			background-image : url('images/txt3.png');
-		}
-		#txt4 {
-			background-image : url('images/txt4.png');
-		}
-		#txt5 {
-			background-image : url('images/txt5.png');
-		}
-		#txt6 {
-			background-image : url('images/txt6.png');
-		}
-	</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport"
+        content="initial-scale=1.0, width=device-width, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <link rel="stylesheet" type="text/css" href="lib/reset.css">
+  <link rel="stylesheet" type="text/css" href="lib/anims.css">
+  <style media="" data-href="css/main.css">
+    body,
+    html {
+      font-smoothing         : antialiased !important;
+      -webkit-font-smoothing : antialiased !important;
+    }
+    body {
+      overflow : hidden;
+    }
+    #ad {
+      position            : absolute;
+      display             : block;
+      width               : 300px;
+      height              : 600px;
+      overflow            : hidden;
+      -moz-user-select    : -moz-none;
+      -khtml-user-select  : none;
+      -webkit-user-select : none;
+      -ms-user-select     : none;
+      -webkit-user-select : none;
+      cursor              : pointer;
+    }
+    .bg {
+      background-size : contain;
+    }
+    .borde {
+      position : absolute;
+      top      : 0;
+      left     : 0;
+      width    : 298px !important;
+      height   : 598px !important;
+      border   : 1px solid #000000;
+    }
+    #content {
+      cursor : pointer;
+    }
+    #content, #frame1, #frame2, #loop, #fondo1, #fondo2, #txt1, #txt2, #txt3, #txt4, #txt5, #txt6 {
+      position : absolute;
+      top      : 0;
+      left     : 0;
+      right    : 0;
+      bottom   : 0;
+    }
+    #fondo1, #loop {
+      background-image : url('images/fondo1.jpg');
+    }
+    #fondo2 {
+      background-image : url('images/fondo2.jpg');
+    }
+    #txt1 {
+      background-image : url('images/txt1.png');
+    }
+    #txt2 {
+      background-image : url('images/txt2.png');
+    }
+    #txt3 {
+      background-image : url('images/txt3.png');
+    }
+    #txt4 {
+      background-image : url('images/txt4.png');
+    }
+    #txt5 {
+      background-image : url('images/txt5.png');
+    }
+    #txt6 {
+      background-image : url('images/txt6.png');
+    }
+  </style>
 </head>
 <body onLoad="initEB()">
-<div id='ad' class='bg'>
-	<section id="content">
-		<div id="frame1">
-			<div id="fondo1"></div>
-			<div id="txt1" class="animated"></div>
-			<div id="txt2" class="animated"></div>
-			<div id="txt3" class="animated"></div>
-			<div id="txt4" class="animated"></div>
-		</div>
-		<div id="frame2">
-			<div id="fondo2" class="animated"></div>
-			<div id="txt5" class="animated"></div>
-			<div id="txt6" class="animated"></div>
-		</div>
-		<div id="loop" class="animated"></div>
-	</section>
+<div id="ad" class="bg">
+  <section id="content">
+    <div id="frame1">
+      <div id="fondo1"></div>
+      <div id="txt1" class="animated"></div>
+      <div id="txt2" class="animated"></div>
+      <div id="txt3" class="animated"></div>
+      <div id="txt4" class="animated"></div>
+    </div>
+    <div id="frame2">
+      <div id="fondo2" class="animated"></div>
+      <div id="txt5" class="animated"></div>
+      <div id="txt6" class="animated"></div>
+    </div>
+    <div id="loop" class="animated"></div>
+  </section>
 </div>
 <script>
-	function initEB () {
-		if ( ! EB.isInitialized () ) {
-			EB.addEventListener ( EBG.EventName.EB_INITIALIZED , startAd );
-		} else {
-			startAd ();
-		}
-	}
-	function startAd () {
-		var App = {
-			loops    : 0 ,
-			loopsMax : 1 ,
-			_ad      : document.querySelector ( "#ad" ) ,
-			_content : document.querySelector ( "#content" ) ,
-			_fondo1  : document.querySelector ( "#fondo1" ) ,
-			_fondo2  : document.querySelector ( "#fondo2" ) ,
-			_loop    : document.querySelector ( "#loop" ) ,
-			_txt1    : document.querySelector ( "#txt1" ) ,
-			_txt2    : document.querySelector ( "#txt2" ) ,
-			_txt3    : document.querySelector ( "#txt3" ) ,
-			_txt4    : document.querySelector ( "#txt4" ) ,
-			_txt5    : document.querySelector ( "#txt5" ) ,
-			_txt6    : document.querySelector ( "#txt6" )
-		};
-		App.createDispatchEvents = function () {
-			addEvent ( App._content , "click" , function () {
-				EB.clickthrough ();
-			} );
-		};
-		App.animacion = function () {
-			App.transicion ( 500 , App._txt1 , null , 'fadeIn' , '' );
-			App.transicion ( 1000 , App._txt2 , null , 'fadeIn' , '' );
-			App.transicion ( 1500 , App._txt3 , null , 'fadeIn' , '' );
-			App.transicion ( 2000 , App._txt4 , null , 'fadeIn' , '' );
-			App.transicion ( 5000 , App._fondo2 , null , 'fadeIn' , '' );
-			App.transicion ( 7000 , App._txt5 , null , 'fadeInRight' , '' );
-			App.transicion ( 8000 , App._txt6 , null , 'fadeInRight' , '' );
-			setTimeout ( function () {
-				if ( App.loops < App.loopsMax ) {
-					App.transicion ( 500 , App._loop , null , 'fadeIn' , '' );
-					setTimeout ( function () {
-						App.loop ();
-					} , 1000 );
-				}
-			} , 12000 );
-		};
-		App.transicion = function ( time , itemIn , itemOut , aniIn , aniOut ) {
-			setTimeout ( function () {
-				if ( itemOut ) {
-					App.clean ( itemOut );
-					classie.add ( itemOut , aniOut );
-					setTimeout ( function () {
-						classie.remove ( itemOut , aniOut );
-					} , 1000 );
-					if ( itemIn ) {
-						setTimeout ( function () {
-							classie.remove ( itemIn , aniOut );
-							classie.add ( itemIn , aniIn );
-						} , 800 );
-					}
-				} else {
-					classie.add ( itemIn , aniIn );
-				}
-			} , time );
-		};
-		App.loop = function () {
-			for ( var i in App ) {
-				if ( typeof(App[ i ]) == "object" ) {
-					App.clean ( App[ i ] );
-				}
-			}
-			App.loops ++;
-			App.animacion ();
-		};
-		App.clean = function ( obj ) {
-			classie.remove ( obj , 'fadeIn' );
-			classie.remove ( obj , 'fadeInUp' );
-			classie.remove ( obj , 'fadeInDown' );
-			classie.remove ( obj , 'fadeInLeft' );
-			classie.remove ( obj , 'fadeInRight' );
-			classie.remove ( obj , 'fadeOut' );
-			classie.remove ( obj , 'slideInCenter' );
-			classie.remove ( obj , 'slideUp' );
-			classie.remove ( obj , 'slideDown' );
-			classie.remove ( obj , 'slideLeft' );
-			classie.remove ( obj , 'slideRight' );
-		};
-		App.createDispatchEvents ();
-		App.animacion ();
-	}
+  function initEB() {
+    if (!EB.isInitialized()) {
+      EB.addEventListener(EBG.EventName.EB_INITIALIZED, startAd);
+    } else {
+      startAd();
+    }
+  }
+  function startAd() {
+    var App = {
+      loops: 0,
+      loopsMax: 1,
+      _ad: document.querySelector("#ad"),
+      _content: document.querySelector("#content"),
+      _fondo1: document.querySelector("#fondo1"),
+      _fondo2: document.querySelector("#fondo2"),
+      _loop: document.querySelector("#loop"),
+      _txt1: document.querySelector("#txt1"),
+      _txt2: document.querySelector("#txt2"),
+      _txt3: document.querySelector("#txt3"),
+      _txt4: document.querySelector("#txt4"),
+      _txt5: document.querySelector("#txt5"),
+      _txt6: document.querySelector("#txt6")
+    };
+    App.createDispatchEvents = function() {
+      addEvent(App._content, "click", function() {
+        EB.clickthrough();
+      });
+    };
+    App.animacion = function() {
+      App.transicion(500, App._txt1, null, 'fadeIn', '');
+      App.transicion(1000, App._txt2, null, 'fadeIn', '');
+      App.transicion(1500, App._txt3, null, 'fadeIn', '');
+      App.transicion(2000, App._txt4, null, 'fadeIn', '');
+      App.transicion(5000, App._fondo2, null, 'fadeIn', '');
+      App.transicion(7000, App._txt5, null, 'fadeInRight', '');
+      App.transicion(8000, App._txt6, null, 'fadeInRight', '');
+      setTimeout(function() {
+        if (App.loops < App.loopsMax) {
+          App.transicion(500, App._loop, null, 'fadeIn', '');
+          setTimeout(function() {
+            App.loop();
+          }, 1000);
+        }
+      }, 12000);
+    };
+    App.transicion = function(time, itemIn, itemOut, aniIn, aniOut) {
+      setTimeout(function() {
+        if (itemOut) {
+          App.clean(itemOut);
+          classie.add(itemOut, aniOut);
+          setTimeout(function() {
+            classie.remove(itemOut, aniOut);
+          }, 1000);
+          if (itemIn) {
+            setTimeout(function() {
+              classie.remove(itemIn, aniOut);
+              classie.add(itemIn, aniIn);
+            }, 800);
+          }
+        } else {
+          classie.add(itemIn, aniIn);
+        }
+      }, time);
+    };
+    App.loop = function() {
+      for (var i in App) {
+        if (typeof(App[i]) == "object") {
+          App.clean(App[i]);
+        }
+      }
+      App.loops++;
+      App.animacion();
+    };
+    App.clean = function(obj) {
+      classie.remove(obj, 'fadeIn');
+      classie.remove(obj, 'fadeInUp');
+      classie.remove(obj, 'fadeInDown');
+      classie.remove(obj, 'fadeInLeft');
+      classie.remove(obj, 'fadeInRight');
+      classie.remove(obj, 'fadeOut');
+      classie.remove(obj, 'slideInCenter');
+      classie.remove(obj, 'slideUp');
+      classie.remove(obj, 'slideDown');
+      classie.remove(obj, 'slideLeft');
+      classie.remove(obj, 'slideRight');
+    };
+    App.createDispatchEvents();
+    App.animacion();
+  }
 </script>
 <script type="text/javascript" src="lib/isMobile.min.js"></script>
 <script type="text/javascript" src="lib/EBLoader.js"></script>
-<script type="text/javascript" src="lib/ie9event.classie.prefixfree.min.js"></script>
+<script type="text/javascript"
+        src="lib/ie9event.classie.prefixfree.min.js"></script>
 </body>
 </html>
