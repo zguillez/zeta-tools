@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <link rel="stylesheet" type="text/css" href="lib/reset.css">
+  <link rel="stylesheet" type="text/css" href="lib/anims.css">
+  <style media="" data-href="css/main.css">
+    body,
+    html {
+      font-smoothing         : antialiased !important;
+      -webkit-font-smoothing : antialiased !important;
+    }
+    body {
+      overflow : hidden;
+    }
+    #ad {
+      position            : absolute;
+      display             : block;
+      width               : 300px;
+      height              : 600px;
+      overflow            : hidden;
+      -moz-user-select    : -moz-none;
+      -khtml-user-select  : none;
+      -webkit-user-select : none;
+      -ms-user-select     : none;
+      -webkit-user-select : none;
+      cursor              : pointer;
+    }
+    .bg {
+      background-size : contain;
+    }
+    .borde {
+      position : absolute;
+      top      : 0;
+      left     : 0;
+      width    : 298px !important;
+      height   : 598px !important;
+      border   : 1px solid #000000;
+    }
+    #content {
+      cursor : pointer;
+    }
+    /* video */
+    #imageContainer {
+      width  : 300px;
+      height : 168px;
+    }
+    #videoContainer {
+      margin-top : 0;
+    }
+    #videoBox {
+      background-color : black;
+      width            : 300px;
+      height           : 168px;
+      position         : absolute;
+      margin           : 0;
+      padding          : 0;
+      top              : 0;
+      left             : 0;
+      overflow         : hidden;
+    }
+    #video {
+      object-fit : inherit;
+      width      : 300px;
+      height     : 168px;
+    }
+    #contracted, #expanded {
+      /*background-color: #000;*/
+      position : absolute;
+      margin   : 0;
+      padding  : 0;
+    }
+    button {
+      position : absolute;
+      cursor   : pointer;
+      top      : 0;
+      width    : 160px;
+      height   : 24px;
+      z-index  : 9999999999 !important;
+    }
+    .upperLayer {
+      display : block;
+      z-index : 20;
+    }
+    .behindLayer {
+      display : none;
+      z-index : 10;
+    }
+    #containerAudio {
+      z-index           : 30;
+      position          : absolute;
+      top               : 50%;
+      left              : 50%;
+      width             : 300px;
+      height            : 168px;
+      -webkit-transform : translate(-50%, -50%);
+      -ms-transform     : translate(-50%, -50%);
+      transform         : translate(-50%, -50%);
+    }
+    #expandButton {
+      width            : 100%;
+      height           : 100%;
+      border           : 0;
+      background-color : transparent;
+      cursor           : pointer;
+    }
+    #expandButton:before {
+      position            : absolute;
+      content             : '';
+      left                : 0;
+      right               : 0;
+      top                 : 0;
+      bottom              : 0;
+      background-image    : url("./images/audio.svg");
+      background-position : center;
+      background-size     : 40px;
+      background-repeat   : no-repeat;
+      opacity             : .80;
+      transition          : 500ms ease-out;
+      animation           : opacityLoop 2s ease-out infinite alternate;
+    }
+    #expandButton:hover:before {
+      opacity   : 1;
+      transform : scale(0.9);
+    }
+    .hide {
+      opacity : 0;
+      display : none;
+    }
+    .show {
+      opacity : 1 !important;
+      display : block !important;
+    }
+    /* video end */
+    #content, #frame1, #frame2, #loop, #fondo1, #fondo2, #txt1, #txt2, #txt3, #txt4, #txt5, #txt6 {
+      position : absolute;
+      top      : 0;
+      left     : 0;
+      right    : 0;
+      bottom   : 0;
+    }
+    #fondo1, #loop {
+      background-image : url('images/fondo1.jpg');
+    }
+    #fondo2 {
+      background-image : url('images/fondo2.jpg');
+    }
+    #txt1 {
+      background-image : url('images/txt1.png');
+    }
+    #txt2 {
+      background-image : url('images/txt2.png');
+    }
+    #txt3 {
+      background-image : url('images/txt3.png');
+    }
+    #txt4 {
+      background-image : url('images/txt4.png');
+    }
+    #txt5 {
+      background-image : url('images/txt5.png');
+    }
+    #txt6 {
+      background-image : url('images/txt6.png');
+    }
+  </style>
+</head>
+<body onLoad="initEB()">
+<div id="ad" class="bg">
+  <section id="videoBox" class="show">
+    <div class="upperLayer" id="contracted">
+      <div id="containerAudio">
+        <button id="expandButton" name="expandButton" class="show"></button>
+      </div>
+      <img id="imageContainer" alt="" src="images/onMovieIniAndEnd.png">
+    </div>
+    <div class="behindLayer" id="expanded">
+      <div id="videoContainer" class="video-container centered">
+        <video id="video" controls="controls" muted="" poster="images/onMovieIniAndEnd.png" webkit-playsinline="">
+          <source src="videos/video.mp4" type="video/mp4">
+          Your browser does not support the <code>video</code> element.
+        </video>
+      </div>
+    </div>
+  </section>
+  <section id="content">
+    <div id="frame1">
+      <div id="fondo1"></div>
+      <div id="txt1" class="animated"></div>
+      <div id="txt2" class="animated"></div>
+      <div id="txt3" class="animated"></div>
+      <div id="txt4" class="animated"></div>
+    </div>
+    <div id="frame2">
+      <div id="fondo2" class="animated"></div>
+      <div id="txt5" class="animated"></div>
+      <div id="txt6" class="animated"></div>
+    </div>
+    <div id="loop" class="animated"></div>
+  </section>
+</div>
+<script>
+  function initEB() {
+    if (!EB.isInitialized()) {
+      EB.addEventListener(EBG.EventName.EB_INITIALIZED, startAd);
+    } else {
+      startAd();
+    }
+  }
+  function startAd() {
+    var App = {
+      loops: 0,
+      loopsMax: 1,
+      _ad: document.querySelector("#ad"),
+      _content: document.querySelector("#content"),
+      _fondo1: document.querySelector("#fondo1"),
+      _fondo2: document.querySelector("#fondo2"),
+      _loop: document.querySelector("#loop"),
+      _txt1: document.querySelector("#txt1"),
+      _txt2: document.querySelector("#txt2"),
+      _txt3: document.querySelector("#txt3"),
+      _txt4: document.querySelector("#txt4"),
+      _txt5: document.querySelector("#txt5"),
+      _txt6: document.querySelector("#txt6"),
+      _videoBox: document.querySelector("#videoBox"),
+      _video: document.querySelector("#video"),
+      _expandButton: document.querySelector("#expandButton"),
+      _expanded: document.querySelector("#expanded"),
+      _contracted: document.querySelector("#contracted"),
+      _videoSizmek: new EBG.VideoModule(video),
+      _isMobile: true,
+      _isVideoPlaying: false
+    };
+    App.createDispatchEvents = function() {
+      addEvent(App._content, "click", function() {
+        EB.clickthrough();
+      });
+    };
+    App.animacion = function() {
+      App.transicion(500, App._txt1, null, 'fadeIn', '');
+      App.transicion(1000, App._txt2, null, 'fadeIn', '');
+      App.transicion(1500, App._txt3, null, 'fadeIn', '');
+      App.transicion(2000, App._txt4, null, 'fadeIn', '');
+      App.transicion(5000, App._fondo2, null, 'fadeIn', '');
+      App.transicion(7000, App._txt5, null, 'fadeInRight', '');
+      App.transicion(8000, App._txt6, null, 'fadeInRight', '');
+      setTimeout(function() {
+        if (App.loops < App.loopsMax) {
+          App.transicion(500, App._loop, null, 'fadeIn', '');
+          setTimeout(function() {
+            App.loop();
+          }, 1000);
+        }
+      }, 12000);
+    };
+    App.transicion = function(time, itemIn, itemOut, aniIn, aniOut) {
+      setTimeout(function() {
+        if (itemOut) {
+          App.clean(itemOut);
+          classie.add(itemOut, aniOut);
+          setTimeout(function() {
+            classie.remove(itemOut, aniOut);
+          }, 1000);
+          if (itemIn) {
+            setTimeout(function() {
+              classie.remove(itemIn, aniOut);
+              classie.add(itemIn, aniIn);
+            }, 800);
+          }
+        } else {
+          classie.add(itemIn, aniIn);
+        }
+      }, time);
+    };
+    App.loop = function() {
+      for (var i in App) {
+        if (typeof(App[i]) == "object") {
+          App.clean(App[i]);
+        }
+      }
+      App.loops++;
+      App.animacion();
+    };
+    App.clean = function(obj) {
+      classie.remove(obj, 'fadeIn');
+      classie.remove(obj, 'fadeInUp');
+      classie.remove(obj, 'fadeInDown');
+      classie.remove(obj, 'fadeInLeft');
+      classie.remove(obj, 'fadeInRight');
+      classie.remove(obj, 'fadeOut');
+      classie.remove(obj, 'slideInCenter');
+      classie.remove(obj, 'slideUp');
+      classie.remove(obj, 'slideDown');
+      classie.remove(obj, 'slideLeft');
+      classie.remove(obj, 'slideRight');
+    };
+    App.createDispatchEvents();
+    App.animacion();
+    //--------------------------------------
+    App.initVideoSequence = function() {
+      App._isVideoPlaying = false;
+      var imageContainer = document.querySelector("#imageContainer");
+      var miSecuencia = new videoSequence({
+        secondsNum: 22,
+        imageNum: 176,
+        filesToBuffer: 2,
+        sequenceContainer: imageContainer,
+        filesPath: [
+          "assets/images01.js",
+          "assets/images02.js",
+          "assets/images03.js",
+          "assets/images04.js",
+          "assets/images05.js",
+          "assets/images06.js"
+        ],
+        onSequenceStart: function() {
+          classie.add(App._videoBox, "fadeIn")
+        },
+        onSequenceComplete: function() {
+          if (App._loop) {
+            App.initVideoSequence();
+          } else {
+            miSecuencia.stopSequence();
+            imageContainer.src = "images/onMovieIniAndEnd.png";
+          }
+        }
+      });
+      miSecuencia.init();
+      addEvent(App._expandButton, "click", function() {
+        classie.add(App._expandButton, 'hide');
+        EB.userActionCounter("click Audio Closing VideoSequence Loading MP4");
+        miSecuencia.stopSequence();
+        App.initVideo();
+      });
+    };
+    App.initVideo = function() {
+      App._isVideoPlaying = true;
+      addEvent(App._video, "ended", function() {
+        if (App._loop) {
+          video.play();
+          App.animacionLoop();
+          EB.automaticEventCounter("Finish video MP4 AutoCollapse");
+        } else {
+          classie.remove(App._expanded, 'upperLayer');
+          classie.add(App._expanded, 'behindLayer');
+        }
+      });
+      App._video.play();
+      App.ShowmeMp4();
+      App._video.muted = !App._isMobile;
+    };
+    App.ShowmeMp4 = function() {
+      classie.add(App._expanded, 'upperLayer');
+      classie.remove(App._expanded, 'behindLayer');
+      classie.add(App._contracted, 'upperLayer');
+      classie.remove(App._contracted, 'behindLayer');
+      classie.add(App._expandButton, 'hide');
+      classie.remove(App._expandButton, 'show');
+      classie.add(App._videoBox, 'show');
+    };
+    if (isMobile.phone) {
+      App._isMobile = true;
+      App.initVideoSequence();
+    } else {
+      if (isMobile.tablet) {
+        App._isMobile = true;
+        App.initVideoSequence();
+      } else {
+        App._isMobile = false;
+        App.initVideo();
+        //App.initVideoSequence();
+      }
+    }
+  }
+</script>
+<script>EBModulesToLoad = [
+  "Video",
+  "EBCMD"
+];</script>
+<script type="text/javascript" src="lib/isMobile.min.js"></script>
+<script type="text/javascript" src="lib/EBLoader.js"></script>
+<script type="text/javascript" src="lib/videoSequence.js"></script>
+<!--<script type="text/javascript" src="lib/videosub-0.9.9.js"></script>-->
+<script type="text/javascript" src="lib/ie9event.classie.prefixfree.min.js"></script>
+</body>
+</html>
