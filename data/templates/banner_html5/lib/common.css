@@ -1,0 +1,31 @@
+body,
+html {
+	font-smoothing         : antialiased !important;
+	-webkit-font-smoothing : antialiased !important;
+}
+body {
+	overflow : hidden;
+}
+#ad {
+	position            : absolute;
+	display             : block;
+	overflow            : hidden;
+	-moz-user-select    : -moz-none;
+	-khtml-user-select  : none;
+	-webkit-user-select : none;
+	-ms-user-select     : none;
+	-webkit-user-select : none;
+	cursor              : pointer;
+}
+.bg {
+	background-size : contain;
+}
+.borde {
+	position : absolute;
+	top      : 0;
+	left     : 0;
+	border   : 1px solid #000000;
+}
+#content {
+	cursor : pointer;
+}
