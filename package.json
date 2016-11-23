@@ -1,9 +1,9 @@
 {
   "name": "zeta-tools",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "Zguillez nodejs tools",
   "repository": "https://github.com/zguillez/zeta-tools.git",
-  "license": "GPL",
+  "license": "MIT",
   "author": {
     "name": "Guillermo de la Iglesia",
     "email": "mail@zguillez.io",
@@ -13,9 +13,17 @@
   "bin": {
     "z": "index.js"
   },
+  "scripts": {
+    "start": "npm run z",
+    "z": "node index.js"
+  },
   "dependencies": {
     "colors": "^1.1.2",
-    "npm-check-updates": "^2.6.7",
-    "shelljs": "^0.7.0"
+    "npm-check-updates": "^2.8.6",
+    "shelljs": "^0.7.5"
+  },
+  "devDependencies": {
+    "eslint": "^3.10.2",
+    "eslint-config-google": "^0.7.0"
   }
 }

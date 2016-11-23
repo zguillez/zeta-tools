@@ -1,3 +1,6 @@
+* {
+	box-sizing : border-box;
+}
 body,
 html {
 	font-smoothing         : antialiased !important;
@@ -15,10 +18,9 @@ body {
 	-webkit-user-select : none;
 	-ms-user-select     : none;
 	-webkit-user-select : none;
-	cursor              : pointer;
 }
 .bg {
-	background-size : contain;
+	background-size : cover;
 }
 .borde {
 	position : absolute;
@@ -28,4 +30,24 @@ body {
 }
 #content {
 	cursor : pointer;
+}
+.borde #content {
+	top    : -1px;
+	left   : -1px;
+	bottom : -1px;
+	right  : -1px;
+}
+.activo {
+	pointer-events : all !important;
+	cursor         : pointer !important;
+}
+.inactivo {
+	pointer-events : none !important;
+	cursor         : default !important;
+}
+.visible {
+	display : block !important;
+}
+.invisible {
+	display : none !important;
 }

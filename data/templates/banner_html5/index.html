@@ -6,22 +6,31 @@
         content="initial-scale=1.0, width=device-width, user-scalable=no"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <link rel="stylesheet" type="text/css" href="lib/reset.css">
+  <link rel="stylesheet" type="text/css" href="lib/common.css">
   <link rel="stylesheet" type="text/css" href="lib/anims.css">
   <style media="" data-href="css/main.css">
     #ad {
       width  : 300px;
       height : 600px;
     }
-    .borde {
-      width  : 298px !important;
-      height : 598px !important;
-    }
     #content, #frame1, #frame2, #loop, #fondo1, #fondo2, #txt1, #txt2, #txt3, #txt4, #txt5, #txt6 {
-      position : absolute;
-      top      : 0;
-      left     : 0;
-      right    : 0;
-      bottom   : 0;
+      position          : absolute;
+      top               : 0;
+      left              : 0;
+      right             : 0;
+      bottom            : 0;
+      pointer-events    : none;
+      background-repeat : no-repeat;
+      background-size   : contain;
+    }
+    .preload-images {
+      background : url('images/fondo1.jpg') no-repeat -9999px -9999px,
+      url('images/fondo2.jpg') no-repeat -9999px -9999px,
+      url('images/txt1.png') no-repeat -9999px -9999px,
+      url('images/txt2.png') no-repeat -9999px -9999px;
+    }
+    #content {
+      pointer-events : all;
     }
     #fondo1, #loop {
       background-image : url('images/fondo1.jpg');
@@ -50,8 +59,8 @@
   </style>
 </head>
 <body onLoad="initEB()">
-<div id="ad" class="bg">
-  <section id="content">
+<div id="ad" class="bg preload-images">
+  <section id="content" class="borde">
     <div id="frame1">
       <div id="fondo1"></div>
       <div id="txt1" class="animated"></div>
@@ -78,7 +87,8 @@
   function startAd() {
     var App = {
       loops: 0,
-      loopsMax: 1,
+      loopsMax: 0,
+      _txt_animated: document.querySelectorAll(".txt_animated"),
       _ad: document.querySelector("#ad"),
       _content: document.querySelector("#content"),
       _fondo1: document.querySelector("#fondo1"),
@@ -156,6 +166,27 @@
     };
     App.createDispatchEvents();
     App.animacion();
+    //--------------------------------------
+    var i, t = App._txt_animated.length;
+    App.animacionLoop = function() {
+      for (i = 0; i < t; i++) {
+        classie.remove(App._txt_animated[i], 'fadeInUp');
+        classie.remove(App._txt_animated[i], 'fadeInRight');
+      }
+      classie.remove(App._lin1, 'slideInCenter');
+      classie.remove(App._lin2, 'slideInCenter');
+      for (i = 0; i < t; i++) {
+        classie.add(App._txt_animated[i], 'fadeOut');
+      }
+      classie.add(App._lin1, 'fadeOut');
+      classie.add(App._lin2, 'fadeOut');
+      setTimeout(function() {
+        for (i = 0; i < t; i++) {
+          classie.remove(App._txt_animated[i], 'fadeOut');
+        }
+        App.animacion();
+      }, 1000);
+    };
   }
 </script>
 <script type="text/javascript" src="lib/isMobile.min.js"></script>
