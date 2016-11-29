@@ -1,0 +1,27 @@
+{
+  "name": "test",
+  "description": "for test",
+  "version": "0.0.1",
+  "authors": [
+    "Guillermo de la Iglesia <zguillez@gmail.com>"
+  ],
+  "main": "test-element.html",
+  "repository": "",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "scripts": {
+    "serve": "lite-server",
+    "build": "vulcanize --strip-comments test-element.html > test-component.tmp && html-minifier test-component.tmp --remove-comments --collapse-whitespace --minify-css --minify-js --output test-component.html"
+  },
+  "dependencies": {
+    "@polymer/polymer": "latest"
+  },
+  "devDependencies": {
+    "html-minifier": "latest",
+    "lite-server": "latest",
+    "vulcanize": "latest"
+  },
+  "license": "MIT"
+}

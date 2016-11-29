@@ -1,0 +1,21 @@
+<link rel="import" href="node_modules/@polymer/polymer/polymer.html">
+<dom-module id="test-element">
+  <template>
+    <p>id: {{id}}</p>
+  </template>
+  <script>Polymer({
+    is : 'test-element',
+    properties : {
+      id : {
+        type : String,
+        observer : '_userIdChanged'
+      }
+    },
+    ready : function() {
+      console.log("id: " + this.id);
+    },
+    _userIdChanged : function() {
+      console.log("new id: " + this.id);
+    }
+  });</script>
+</dom-module>
