@@ -13,7 +13,9 @@
   ],
   "scripts": {
     "serve": "lite-server",
-    "build": "vulcanize --strip-comments test-element.html > test-component.tmp && html-minifier test-component.tmp --remove-comments --collapse-whitespace --minify-css --minify-js --output test-component.html"
+    "build": "vulcanize --strip-comments test-element.html > tmp/test-component.html && html-minifier tmp/test-component.html --remove-comments --collapse-whitespace --minify-css --minify-js --output test-component.html",
+    "polymer": "vulcanize node_modules/@polymer/polymer/polymer.html > tmp/polymer.html && html-minifier tmp/polymer.html --remove-comments --collapse-whitespace --minify-css --minify-js --output polymer.html",
+    "postinstall": "npm run polymer"
   },
   "dependencies": {
     "@polymer/polymer": "latest"
