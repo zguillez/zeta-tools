@@ -5,7 +5,7 @@
   "authors": [
     "Guillermo de la Iglesia <zguillez@gmail.com>"
   ],
-  "main": "test-element.html",
+  "main": "elements.html",
   "repository": "",
   "keywords": [
     "polymer",
@@ -13,14 +13,24 @@
   ],
   "scripts": {
     "serve": "lite-server",
-    "build": "vulcanize --strip-comments test-element.html > tmp/test-component.html && html-minifier tmp/test-component.html --remove-comments --collapse-whitespace --minify-css --minify-js --output test-component.html",
+    "build": "npm run build-vulcanize && npm run build-crisper && npm run build-babel && npm run build-minifier",
+    "build-vulcanize": "vulcanize --strip-comments --inline-script --inline-css elements.html > tmp/elements.html",
+    "build-crisper": "crisper -s tmp/elements.html -h tmp/components.html -j tmp/components.js",
+    "build-babel": "babel tmp/components.js --presets es2015 -o dist/components.js",
+    "build-minifier": "html-minifier tmp/components.html --collapse-whitespace --output dist/components.html",
+    "build-polymer": "npm run polymer && npm run polymer-mini && npm run polymer-micro",
     "polymer": "vulcanize node_modules/@polymer/polymer/polymer.html > tmp/polymer.html && html-minifier tmp/polymer.html --remove-comments --collapse-whitespace --minify-css --minify-js --output polymer.html",
-    "postinstall": "npm run polymer"
+    "polymer-mini": "vulcanize node_modules/@polymer/polymer/polymer-mini.html > tmp/polymer-mini.html && html-minifier tmp/polymer-mini.html --remove-comments --collapse-whitespace --minify-css --minify-js --output polymer-mini.html",
+    "polymer-micro": "vulcanize node_modules/@polymer/polymer/polymer-micro.html > tmp/polymer-micro.html && html-minifier tmp/polymer-micro.html --remove-comments --collapse-whitespace --minify-css --minify-js --output polymer-micro.html",
+    "postinstall": "npm run build-polymer"
   },
   "dependencies": {
     "@polymer/polymer": "latest"
   },
   "devDependencies": {
+    "babel-cli": "latest",
+    "babel-preset-es2015": "latest",
+    "crisper": "laster",
     "html-minifier": "latest",
     "lite-server": "latest",
     "vulcanize": "latest"
