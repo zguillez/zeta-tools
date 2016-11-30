@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b21411d-1544-4643-b5bd-5fb9a9038069" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/templates/angular2/images/angular-128.png" afterPath="$PROJECT_DIR$/data/templates/angular2/src/images/angular-128.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/templates/angular2/src/app/app.component.pug" afterPath="$PROJECT_DIR$/data/templates/angular2/src/app/components/app.component.pug" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/templates/angular2/src/app/app.component.scss" afterPath="$PROJECT_DIR$/data/templates/angular2/src/app/components/app.component.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/templates/angular2/src/app/app.component.ts" afterPath="$PROJECT_DIR$/data/templates/angular2/src/app/components/app.component.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/templates/angular2/src/app/app.module.ts" afterPath="$PROJECT_DIR$/data/templates/angular2/src/app/components/app.module.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/templates/angular2/config/webpack.common.js" afterPath="$PROJECT_DIR$/data/templates/angular2/config/webpack.common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/templates/angular2/package.json" afterPath="$PROJECT_DIR$/data/templates/angular2/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/templates/angular2/src/app/index.ts" afterPath="$PROJECT_DIR$/data/templates/angular2/src/app/index.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/templates/angular2/src/index.html" afterPath="$PROJECT_DIR$/data/templates/angular2/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="zeta-tools.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -239,12 +229,12 @@
       <option name="presentableId" value="Default" />
       <updated>1480348990298</updated>
       <workItem from="1480348992516" duration="2168000" />
-      <workItem from="1480414185966" duration="10234000" />
+      <workItem from="1480414185966" duration="10913000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12402000" />
+    <option name="totallyTimeSpent" value="13081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
