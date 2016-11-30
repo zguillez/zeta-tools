@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import '../styles/global.scss';
+import '../../styles/global.scss';
 @Component({
   selector : 'app-container',
   template : require('./app.component.pug'),

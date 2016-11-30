@@ -1,7 +1,9 @@
 {
   "scripts": {
     "serve": "webpack-dev-server --config config/webpack.dev.js --inline --progress --port 3000",
-    "build": "webpack --config config/webpack.prod.js --progress --profile --bail",
+    "build": "npm run clean && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "copy": "copyfiles -f ./src/favicon.ico ./dist",
+    "clean": "rimraf dist/*",
     "postinstall": "typings install"
   },
   "dependencies": {
@@ -19,12 +21,18 @@
     "zone.js": "latest"
   },
   "devDependencies": {
-    "css-loader": "latest",
-    "extract-text-webpack-plugin": "latest",
-    "file-loader": "latest",
-    "html-loader": "latest",
-    "html-webpack-plugin": "latest",
+    "typescript": "latest",
+    "typings": "latest",
     "node-sass": "latest",
+    "webpack": "latest",
+    "webpack-cleanup-plugin": "latest",
+    "webpack-dev-server": "latest",
+    "webpack-merge": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "html-webpack-plugin": "latest",
+    "html-loader": "latest",
+    "css-loader": "latest",
+    "file-loader": "latest",
     "null-loader": "latest",
     "raw-loader": "latest",
     "sass-loader": "latest",
@@ -32,11 +40,8 @@
     "pug-html-loader": "latest",
     "pug-loader": "latest",
     "ts-loader": "latest",
-    "typescript": "latest",
-    "typings": "latest",
-    "webpack": "latest",
-    "webpack-cleanup-plugin": "latest",
-    "webpack-dev-server": "latest",
-    "webpack-merge": "latest"
+    "copyfiles": "latest",
+    "rimraf": "latest",
+    "open": "latest"
   }
 }

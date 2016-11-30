@@ -4,30 +4,24 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
 module.exports = {
   entry : {
-    polyfills : './src/polyfills.ts',
-    vendor : './src/vendor.ts',
-    app : './src/main.ts'
+    app : './src/main'
   },
   resolve : {
     extensions : [
       '',
       '.js',
-      '.ts'
+      '.jsx'
     ]
   },
   module : {
     loaders : [
       {
-        test : /\.ts$/,
-        loader : 'ts'
+        test : /\.(js|jsx)$/,
+        loader : 'babel'
       },
       {
         test : /\.html$/,
         loader : 'html'
-      },
-      {
-        test : /\.pug/,
-        loader : 'pug-html-loader'
       },
       {
         test : /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
@@ -64,11 +58,7 @@ module.exports = {
   },
   plugins : [
     new webpack.optimize.CommonsChunkPlugin({
-      name : [
-        'app',
-        'vendor',
-        'polyfills'
-      ]
+      name : ['app']
     }),
     new HtmlWebpackPlugin({
       template : 'src/index.html'

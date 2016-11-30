@@ -1,0 +1,41 @@
+{
+  "scripts": {
+    "serve": "webpack-dev-server --config config/webpack.dev.js --inline --progress --port 3000",
+    "build": "npm run clean && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "copy": "copyfiles -f ./src/favicon.ico ./dist",
+    "clean": "rimraf dist/*"
+  },
+  "dependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "core-js": "latest"
+  },
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-eslint": "latest",
+    "babel-loader": "latest",
+    "babel-polyfill": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "babel-preset-stage-0": "latest",
+    "copyfiles": "latest",
+    "css-loader": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "file-loader": "latest",
+    "html-loader": "latest",
+    "html-webpack-plugin": "latest",
+    "node-sass": "latest",
+    "null-loader": "latest",
+    "open": "latest",
+    "raw-loader": "latest",
+    "react-addons-test-utils": "latest",
+    "react-hot-loader": "latest",
+    "rimraf": "latest",
+    "sass-loader": "latest",
+    "style-loader": "latest",
+    "webpack": "latest",
+    "webpack-cleanup-plugin": "latest",
+    "webpack-dev-server": "latest",
+    "webpack-merge": "latest"
+  }
+}

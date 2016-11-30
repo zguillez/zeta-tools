@@ -1,0 +1,22 @@
+$color : #ff2211;
+
+body {
+  color      : $color;
+  background : #222222;
+}
+
+
+.index img {
+  margin        : 40px auto;
+  border-radius : 4px;
+  background    : #ffffff;
+  display       : block;
+}
+.index .notice {
+  margin       : 20px auto;
+  padding      : 15px 0;
+  text-align   : center;
+  border       : 1px solid #000000;
+  border-width : 1px 0;
+  background   : #666666;
+}
