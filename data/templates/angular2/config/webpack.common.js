@@ -3,75 +3,71 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
 module.exports = {
-  entry : {
-    polyfills : './src/polyfills.ts',
-    vendor : './src/vendor.ts',
-    app : './src/main.ts'
+  entry: {
+    polyfills: './src/polyfills.ts',
+    vendor: './src/vendor.ts',
+    app: './src/main.ts'
   },
-  resolve : {
-    extensions : [
+  resolve: {
+    extensions: [
       '',
       '.js',
       '.ts'
     ]
   },
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       {
-        test : /\.ts$/,
-        loader : 'ts'
+        test: /\.ts$/,
+        loader: 'ts'
       },
       {
-        test : /\.html$/,
-        loader : 'html'
+        test: /\.html$/,
+        loader: 'html'
       },
       {
-        test : /\.pug/,
-        loader : 'pug-html-loader'
+        test: /\.pug/,
+        loader: 'pug-html-loader'
       },
       {
-        test : /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader : 'file?name=assets/[name].[hash].[ext]'
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loader: 'file?name=assets/[name].[hash].[ext]'
       },
       {
-        test : /\.scss$/,
-        exclude : helpers.root('src', 'app'),
-        loader : ExtractTextPlugin.extract('style', 'css!sass')
+        test: /\.css$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
       },
       {
-        test : /\.scss$/,
-        include : helpers.root('src', 'app'),
-        loaders : [
-          "style-loader",
-          "css-loader",
-          "sass-loader"
-        ]
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw'
       },
       {
-        test : /\.css$/,
-        exclude : helpers.root('src', 'app'),
-        loader : ExtractTextPlugin.extract('style', 'css?sourceMap')
+        test: /\.scss$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
       },
       {
-        test : /\.css$/,
-        include : helpers.root('src', 'app'),
-        loaders : [
-          "style-loader",
-          "css-loader"
+        test: /\.scss$/,
+        include: helpers.root('src', 'app'),
+        loaders: [
+          'raw-loader',
+          'sass-loader?sourceMap'
         ]
       }
     ]
   },
-  plugins : [
+  plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name : [
+      name: [
         'app',
         'vendor',
         'polyfills'
       ]
     }),
     new HtmlWebpackPlugin({
-      template : 'src/index.html'
+      template: 'src/index.html'
     })
   ]
 };
