@@ -1,20 +1,22 @@
-<link rel="import" href="node_modules/@polymer/polymer/polymer.html">
 <dom-module id="test-element">
   <template>
-    <p>id: {{id}}</p>
+    <p>id {{id}}</p>
   </template>
   <script>Polymer({
-    is : 'test-element',
-    properties : {
-      id : {
-        type : String,
-        observer : '_userIdChanged'
+    is: 'test-element',
+    properties: {
+      id: {
+        type: String,
+        observer: '_userIdChanged'
       }
     },
-    ready : function() {
+    ready: function() {
       console.log("id: " + this.id);
+      /*var p = Polymer.dom(this.root).querySelector('p');
+       p.innerHTML = "id: " + this.id;
+       Polymer.dom(this.root).appendChild(p);*/
     },
-    _userIdChanged : function() {
+    _userIdChanged: function() {
       console.log("new id: " + this.id);
     }
   });</script>
