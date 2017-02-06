@@ -1,5 +1,7 @@
 # zeta-tools
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zguillez/zeta-tools.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/zeta-tools.svg)](https://badge.fury.io/js/zeta-tools)
 [![Build Status](http://img.shields.io/travis/zguillez/zeta-tools.svg)](https://github.com/zguillez/zeta-tools)
 [![Code Climate](http://img.shields.io/codeclimate/github/zguillez/zeta-tools.svg)](https://codeclimate.com/github/zguillez/zeta-tools)
