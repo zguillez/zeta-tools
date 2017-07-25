@@ -1,7 +1,7 @@
 #! /usr/local/bin/node
 'use_strict';
-var colors = require('colors');
-var param1 = process.argv[2];
+let colors = require('colors');
+let param1 = process.argv[2];
 colors.setTheme({
   silly: 'rainbow',
   input: 'grey',
