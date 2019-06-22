@@ -23,7 +23,7 @@
     "shelljs": "^0.7.5"
   },
   "devDependencies": {
-    "eslint": "^3.11.0",
+    "eslint": "^6.0.0",
     "eslint-config-google": "^0.7.1"
   }
 }
